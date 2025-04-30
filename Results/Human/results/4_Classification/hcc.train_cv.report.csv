@@ -1,0 +1,2 @@
+type,AUC,90%.sens,90%.sens-0I,90%.sens-II,90%.sens-III,90%.sens-III-IV,90%.spec,95%.sens,95%.sens-0I,95%.sens-II,95%.sens-III,95%.sens-III-IV,95%.spec,98%.sens,98%.sens-0I,98%.sens-II,98%.sens-III,98%.sens-III-IV,98%.spec
+train_cv,0.9824,0.947,0.953,1.0,0.812,0.864,0.915,0.916,0.93,1.0,0.688,0.773,0.98,0.916,0.93,1.0,0.688,0.773,0.98

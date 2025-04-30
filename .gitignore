@@ -1,0 +1,12 @@
+.idea/
+.DS_Store
+__pycache__
+.AppleDouble
+.LSOverride
+*.swp
+*~
+*.bak
+*.tmp
+*.swo
+._*
+.Spotlight-V100
