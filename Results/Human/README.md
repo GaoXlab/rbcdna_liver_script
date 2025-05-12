@@ -20,7 +20,7 @@ You should put bam files in bam directory, and the module data in the modelData 
 # Build 10k cpm data
 ./script/step1.sh
 
-# crc pipeline
+# hcc pipeline
 # 1. Feature selection from whole genome features
 ./script/step2_hcc.sh hcc
 # 2. Feature reduction and train model
