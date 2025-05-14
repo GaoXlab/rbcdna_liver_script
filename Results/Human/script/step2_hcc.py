@@ -28,20 +28,23 @@ def process_task(task_id):
     return aggregate_tab_file(tab_file, task_id, blacklist_file)
 
 def main(args):
-    # p100 to p80 and p20
+    # p100 to p70 and p30
     sample_info = load_sample_info(get_location("MODEL_DATA"), args.exp_name)
-    p80_ids_path = os.path.join(get_location("MODEL_DATA") + f"/{args.exp_name}.trn.ids.txt")
-    # always generate p80_ids_path
+    p70_ids_path = os.path.join(get_location("MODEL_DATA") + f"/{args.exp_name}.trn.ids.txt")
+    # always generate p70_ids_path
     if True:
         print(f"generating {args.exp_name}.ids.txt")
         p100 = load_separate_cohorts(get_location("MODEL_DATA"), args.exp_name, "p100")
-        p80, p20, y_p80, y_p20 = train_test_split(sample_info.loc[p100.index],
+        p70, p30, y_p70, y_p30 = train_test_split(sample_info.loc[p100.index],
                      sample_info.loc[p100.index]['target'],
                      test_size=0.3,
                      stratify=sample_info.loc[p100.index]['target'],
                      random_state=1234)
-        p80.to_csv(p80_ids_path, sep=',', index=True, header=False, columns=[])
-        p20.to_csv(get_location("MODEL_DATA") + f"/{args.exp_name}.test.ids.txt", sep=',', index=True, header=False, columns=[])
+        p70.to_csv(p70_ids_path, sep=',', index=True, header=False, columns=[])
+        p30.to_csv(get_location("MODEL_DATA") + f"/{args.exp_name}.test.ids.txt", sep=',', index=True, header=False, columns=[])
+
+        p70[p70['target'] == 0].index.to_series().to_csv(get_location("MODEL_DATA") + f"/{args.exp_name}.neg.ids.txt", index=False, header=False)
+        p70[p70['target'] == 1].index.to_series().to_csv(get_location("MODEL_DATA") + f"/{args.exp_name}.pos.ids.txt", index=False, header=False)
 
     script_dir = get_location("SCRIPT")
     model_data_dir = get_location("MODEL_DATA")
